@@ -1,0 +1,5 @@
+/* Light mode styling */
+.root {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
