@@ -23,8 +23,8 @@
                 <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 25px; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 12, 0, 0, 6);">
                     <Label text="Form Pendaftaran Karyawan" style="-fx-font-size: 20px; -fx-text-fill: #0d47a1; -fx-font-weight: bold;" />
                     <HBox spacing="20">
-                        <TextField fx:id="newUsername" promptText="Username" style="-fx-pref-width: 180px;" />
-                        <PasswordField fx:id="newPassword" promptText="Password" style="-fx-pref-width: 180px;" />
+                        <TextField fx:id="newUsername" promptText="Username" style="-fx-pref-width: 140px;" />
+                        <PasswordField fx:id="newPassword" promptText="Password" style="-fx-pref-width: 140px;" />
                         <TextField fx:id="newGaji" promptText="Gaji Per Hari" style="-fx-pref-width: 150px;" />
                         <Button fx:id="btnDaftar" text="Daftarkan" onAction="#handleDaftar" style="-fx-background-color: #1976d2; -fx-text-fill: white;" />
                     </HBox>
