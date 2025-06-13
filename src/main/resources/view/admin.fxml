@@ -52,7 +52,7 @@
                 <!-- Pengajuan Cuti -->
                 <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 25px; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);">
                     <Label text="Pengajuan Cuti (status: proses)" style="-fx-font-size: 18px; -fx-text-fill: #0d47a1;" />
-                    <ListView fx:id="listCuti" style="-fx-pref-height: 200px;" />
+                    <ListView fx:id="listCuti" style="-fx-pref-height: 165px;" />
                     <HBox spacing="15" alignment="CENTER">
                         <Button text="Setujui" onAction="#setujuiCuti" style="-fx-background-color: #388e3c; -fx-text-fill: white;" />
                         <Button text="Tolak" onAction="#tolakCuti" style="-fx-background-color: #d32f2f; -fx-text-fill: white;" />
@@ -62,7 +62,7 @@
                 <!-- Cuti Disetujui Table -->
                 <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 25px; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 6, 0, 0, 3);">
                     <Label text="Karyawan Cuti Disetujui" style="-fx-font-size: 18px; -fx-text-fill: #0d47a1;" />
-                    <TableView fx:id="tableCutiDisetujui" style="-fx-pref-height: 150px; -fx-background-color: #fce4ec;">
+                    <TableView fx:id="tableCutiDisetujui" style="-fx-pref-height: 195px; -fx-background-color: #fce4ec;">
                         <columns>
                             <TableColumn fx:id="colCutiUser" text="Karyawan" prefWidth="120"/>
                             <TableColumn fx:id="colCutiAlasan" text="Alasan" prefWidth="200"/>
