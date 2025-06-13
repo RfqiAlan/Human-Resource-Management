@@ -7,27 +7,31 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.UserBase;
 import model.Admin;
 import model.Karyawan;
-import util.FileUtil;
+import util.userDAO;
 
 import java.io.IOException;
 import java.util.List;
 
 public class LoginController {
 
-    @FXML private TextField usernameField;
-    @FXML private PasswordField passwordField;
+    public HBox cardGroup;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private PasswordField passwordField;
 
     @FXML
-    private void handleLoginAsAdmin(ActionEvent event) throws IOException {
+    private void handleLoginAsAdmin(ActionEvent ignoredEvent) throws IOException {
         handleLogin("admin");
     }
 
     @FXML
-    private void handleLoginAsKaryawan(ActionEvent event) throws IOException {
+    private void handleLoginAsKaryawan(ActionEvent ignoredEvent) throws IOException {
         handleLogin("karyawan");
     }
 
@@ -35,13 +39,13 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        List<UserBase> users = FileUtil.loadUsers();
+        List<UserBase> users = userDAO.loadUsers();
         for (UserBase user : users) {
             if (user.getUsername().equals(username) &&
                     user.getPassword().equals(password) &&
                     user.getRole().equalsIgnoreCase(expectedRole)) {
 
-                LoginControllerHelper.setLoggedInUsername(user.getUsername());
+                LoginControllerHelper.setLoggedInUsername(username);
 
                 FXMLLoader loader = new FXMLLoader();
                 if (user instanceof Admin) {
@@ -50,12 +54,16 @@ public class LoginController {
                     loader.setLocation(getClass().getResource("/view/karyawan.fxml"));
                 }
 
+                // Tampilkan halaman sesuai role
                 Stage stage = (Stage) usernameField.getScene().getWindow();
                 stage.setScene(new Scene(loader.load()));
-                return;
+                stage.setMaximized(false); // reset dulu
+                javafx.application.Platform.runLater(() -> stage.setMaximized(true));
+                return; // <<=== Penting agar tidak lanjut ke alert error
             }
         }
 
+        // Hanya muncul jika tidak ada user yang cocok
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText("Login gagal: username, password, atau role tidak cocok.");
         alert.show();
