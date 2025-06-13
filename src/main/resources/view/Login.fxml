@@ -1,13 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controller.LoginController">
-    <Label text="Login HRMS" />
-    <TextField fx:id="usernameField" promptText="Username" />
-    <PasswordField fx:id="passwordField" promptText="Password" />
-    <HBox spacing="10">
-        <Button text="Login sebagai Admin" onAction="#handleLoginAsAdmin" />
-        <Button text="Login sebagai Karyawan" onAction="#handleLoginAsKaryawan" />
-    </HBox>
-</VBox>
+<?import javafx.scene.effect.DropShadow?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.LoginController"
+           style="-fx-background-color: linear-gradient(to bottom right, #dcdcdc, #e0f8ff);
+                   -fx-background-size: cover;
+                   -fx-background-position: center center;">
+
+
+    <!-- Centered Container -->
+    <VBox alignment="CENTER">
+        <HBox fx:id="cardGroup"
+              alignment="CENTER"
+              maxWidth="650" prefHeight="450" maxHeight="400"
+              style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 0;">
+            <effect>
+                <DropShadow radius="15" offsetX="4" offsetY="4" color="#aaaaaa"/>
+            </effect>
+            <!-- Login Card -->
+            <VBox alignment="CENTER" spacing="15"
+                  prefWidth="350" prefHeight="400"
+                  style="-fx-background-color: white; -fx-background-radius: 15 0 0 15; -fx-padding: 30;">
+                <Label text="Login"
+                       style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+                <TextField fx:id="usernameField" promptText="Username"
+                           style="-fx-pref-width: 250;" />
+                <PasswordField fx:id="passwordField" promptText="Password"
+                               style="-fx-pref-width: 250;" />
+                <HBox spacing="10" alignment="CENTER">
+                    <Button text="Login Admin" onAction="#handleLoginAsAdmin"
+                            style="-fx-background-color: #00796b; -fx-text-fill: white;" />
+                    <Button text="Login Karyawan" onAction="#handleLoginAsKaryawan"
+                            style="-fx-background-color: #0288d1; -fx-text-fill: white;" />
+                </HBox>
+            </VBox>
+
+            <!-- Info Card -->
+            <VBox spacing="10" alignment="CENTER"
+                  prefWidth="300" prefHeight="400"
+                  style="-fx-background-color: linear-gradient(to bottom right, #caeffa, #effbff); -fx-background-radius: 0 15 15 0; -fx-padding: 30;">
+                <Label text="Check Your Project Progress"
+                       wrapText="true"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004d40; -fx-font-weight: bold;" />
+                <Label text="HRMS helps you manage employee attendance, leave, and payroll in one place."
+                       wrapText="true"
+                       style="-fx-text-fill: #004d40; -fx-padding: 10px;" />
+                <ImageView fitWidth="250" preserveRatio="true">
+                    <Image url="@/assets/info.png"/>
+                </ImageView>
+            </VBox>
+        </HBox>
+    </VBox>
+
+</StackPane>
