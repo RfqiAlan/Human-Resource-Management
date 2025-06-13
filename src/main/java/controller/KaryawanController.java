@@ -31,7 +31,7 @@ public class KaryawanController {
     public Button btnLihatGaji;
     @FXML private Label labelStatus;
     @FXML private Button btnAbsensi;
-    @FXML private TextField fieldCuti;
+    @FXML private TextArea fieldCuti;
 
     @FXML private TextArea areaCutiStatus;
 
@@ -59,7 +59,7 @@ public class KaryawanController {
         if (colKeterangan != null) colKeterangan.setCellValueFactory(data -> data.getValue().keteranganProperty());
 
         loadRiwayatAbsensiSaya();
-        setupMarquee("Selamat datang di Dashboard Admin. Kelola data karyawan, absensi, dan cuti dengan mudah dan cepat!");
+        setupMarquee("Selamat datang di Dashboard Karyawan! Jangan lupa absen dan cek status cuti Anda.");
     }
     public void setupMarquee(String text) {
         if (marqueeLabel == null || marqueePane == null) return;
