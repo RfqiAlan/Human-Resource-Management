@@ -77,13 +77,13 @@
 
     <!-- Footer -->
     <bottom>
-        <HBox  alignment="CENTER_LEFT" style="-fx-padding: 0px; -fx-background-color: #000000;">
-            <StackPane fx:id="marqueePane" style="-fx-pref-height: 40px; -fx-background-color: white; -fx-alignment: center-left;" HBox.hgrow="ALWAYS">
-                <Label fx:id="marqueeLabel" text="Selamat datang di Dashboard Admin! Kelola absensi dan cuti karyawan dengan mudah dan aman."
-                       style="-fx-font-size: 16px; -fx-text-fill: #1976d2;" />
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 0px; -fx-background-color: #222;">
+            <StackPane fx:id="marqueePane" style="-fx-pref-height: 42px; -fx-background-color: white; -fx-alignment: center-left;" HBox.hgrow="ALWAYS">
+                <Label fx:id="marqueeLabel" text="Selamat datang di Dashboard Karyawan! Jangan lupa absen dan cek status cuti Anda."
+                       style="-fx-font-size: 17px; -fx-text-fill: #1976d2;" />
             </StackPane>
             <Button text="Keluar" onAction="#handleLogout"
-                    style="-fx-background-color: #fd0000; -fx-text-fill: white;" />
+                    style="-fx-background-color: linear-gradient(to right, #ff5252, #ff1744); -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 0 26px;"/>
         </HBox>
     </bottom>
 </BorderPane>
