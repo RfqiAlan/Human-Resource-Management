@@ -1,13 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AdminController" spacing="10" alignment="CENTER">
-    <Label text="Dashboard Admin" />
-    <TextField fx:id="newUsername" promptText="Username Karyawan" />
-    <PasswordField fx:id="newPassword" promptText="Password" />
-    <TextField fx:id="newGaji" promptText="Gaji Per Hari" />
-    <Button fx:id="btnDaftar" text="Daftarkan Karyawan" onAction="#handleDaftar" />
-    <Button text="Lihat Absensi Hari Ini" onAction="#handleLihatAbsensiHariIni" />
-    <TextArea fx:id="areaAbsensiHariIni" promptText="Absensi Hari Ini" />
-    <TextArea fx:id="areaStatus" promptText="Status" editable="false" />
-</VBox>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.AdminController"
+            stylesheets="@/style/style.css"
+            styleClass="bg-gradient-admin">
+
+    <!-- Header -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header-admin">
+            <Label text="Admin Dashboard"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <HBox spacing="30" alignment="TOP_CENTER" style="-fx-padding: 30px;">
+            <!-- KIRI -->
+            <VBox spacing="25" HBox.hgrow="ALWAYS" style="-fx-pref-width: 100%;">
+                <!-- Form Pendaftaran -->
+                <VBox spacing="15" styleClass="card" style="-fx-padding: 25px;">
+                    <Label text="Register Employee" styleClass="card-title, card-title-blue" />
+                    
+                    <VBox spacing="10">
+                        <HBox spacing="15">
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Username" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: bold;" />
+                                <TextField fx:id="newUsername" promptText="Enter username" styleClass="text-field" />
+                            </VBox>
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Password" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: bold;" />
+                                <PasswordField fx:id="newPassword" promptText="Enter password" styleClass="password-field" />
+                            </VBox>
+                        </HBox>
+                        <HBox spacing="15" alignment="BOTTOM_LEFT">
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Daily Salary (Rp)" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: bold;" />
+                                <TextField fx:id="newGaji" promptText="e.g. 100000" styleClass="text-field" />
+                            </VBox>
+                            <Button fx:id="btnDaftar" text="Register" onAction="#handleDaftar" styleClass="btn, btn-primary" style="-fx-pref-width: 120px; -fx-pref-height: 38px;"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+
+                <!-- Absensi Hari Ini -->
+                <VBox spacing="15" styleClass="card" style="-fx-padding: 25px;">
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <Label text="Today's Attendance" styleClass="card-title, card-title-blue" HBox.hgrow="ALWAYS" />
+                        <Button text="Refresh" onAction="#handleLihatAbsensiHariIni" styleClass="btn, btn-info" />
+                    </HBox>
+                    
+                    <TableView fx:id="tableAbsensiHariIni" styleClass="table-view" style="-fx-pref-height: 250px;">
+                        <columns>
+                            <TableColumn fx:id="colUsername" text="Employee" prefWidth="130"/>
+                            <TableColumn fx:id="colTanggal" text="Date" prefWidth="110"/>
+                            <TableColumn fx:id="colJam" text="Time" prefWidth="100"/>
+                            <TableColumn fx:id="colKeterangan" text="Status" prefWidth="110"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- KANAN -->
+            <VBox spacing="25" HBox.hgrow="ALWAYS" style="-fx-pref-width: 100%;">
+                <!-- Pengajuan Cuti -->
+                <VBox spacing="15" styleClass="card" style="-fx-padding: 25px;">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Pending Leave Requests" styleClass="card-title, card-title-blue" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="Requires action" style="-fx-text-fill: #ef4444; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-color: #fee2e2; -fx-padding: 4px 8px; -fx-background-radius: 4px;" />
+                    </HBox>
+                    
+                    <ListView fx:id="listCuti" styleClass="list-view" style="-fx-pref-height: 150px;" />
+                    
+                    <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 5px 0 0 0;">
+                        <Button text="Reject" onAction="#tolakCuti" styleClass="btn, btn-danger" style="-fx-pref-width: 100px;" />
+                        <Button text="Approve" onAction="#setujuiCuti" styleClass="btn, btn-success" style="-fx-pref-width: 100px;" />
+                    </HBox>
+                </VBox>
+
+                <!-- Cuti Disetujui Table -->
+                <VBox spacing="15" styleClass="card" style="-fx-padding: 25px;">
+                    <Label text="Approved Leaves" styleClass="card-title, card-title-blue" />
+                    
+                    <TableView fx:id="tableCutiDisetujui" styleClass="table-view" style="-fx-pref-height: 200px;">
+                        <columns>
+                            <TableColumn fx:id="colCutiUser" text="Employee" prefWidth="130"/>
+                            <TableColumn fx:id="colCutiAlasan" text="Reason" prefWidth="250"/>
+                        </columns>
+                    </TableView>
+                    
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button fx:id="btnHapusCutiDisetujui" text="Delete Selected" onAction="#handleHapusCutiDisetujui"
+                                styleClass="btn, btn-danger" />
+                    </HBox>
+                </VBox>
+            </VBox>
+        </HBox>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="footer-dark" style="-fx-padding: 10px 20px;">
+            <StackPane fx:id="marqueePane" style="-fx-background-color: #334155; -fx-background-radius: 6px; -fx-padding: 8px 15px;" HBox.hgrow="ALWAYS">
+                <Label fx:id="marqueeLabel" text="Admin Dashboard. Manage employees and track performance."
+                       style="-fx-font-size: 14px; -fx-text-fill: #f8fafc;" />
+            </StackPane>
+            <Button text="Logout" onAction="#handleLogout"
+                    styleClass="btn, btn-danger" />
+        </HBox>
+    </bottom>
+</BorderPane>

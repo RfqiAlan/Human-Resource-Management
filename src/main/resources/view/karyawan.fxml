@@ -2,76 +2,93 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.KaryawanController"
-            style="-fx-background-color: linear-gradient(to right, #e3f2fd 70%, #bbdefb 100%);">
+            stylesheets="@/style/style.css"
+            styleClass="bg-gradient-karyawan">
 
     <!-- Header -->
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #1976d2; -fx-padding: 24px 20px;">
-            <Label text="Dashboard Karyawan"
-                   style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, #00000080, 8,0,0,1);" />
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header-karyawan">
+            <Label text="Employee Dashboard"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
         </HBox>
     </top>
 
     <!-- Main Content -->
     <center>
-        <HBox spacing="36" alignment="TOP_CENTER" style="-fx-padding: 40px 36px 30px 36px;">
+        <HBox spacing="30" alignment="TOP_CENTER" style="-fx-padding: 30px;">
             <!-- KIRI: Panel Pengajuan Cuti -->
-            <VBox spacing="32" HBox.hgrow="ALWAYS" style="-fx-pref-width: 140%;">
+            <VBox spacing="25" HBox.hgrow="ALWAYS" style="-fx-pref-width: 100%;">
                 <!-- Cuti Card -->
-                <VBox spacing="18" style="-fx-background-color: white; -fx-padding: 36px 32px; -fx-background-radius: 14; -fx-effect: dropshadow(three-pass-box, rgba(2,136,209,0.13), 16, 0, 0, 8);">
-                    <Label text="Pengajuan Cuti" style="-fx-font-size: 22px; -fx-text-fill: #0288d1; -fx-font-weight: bold;" />
-                    <TextArea fx:id="fieldCuti" promptText="Isikan alasan cuti Anda di sini"
-                              wrapText="true"
-                              style="-fx-pref-width: 340px; -fx-pref-height: 180px; -fx-font-size: 15px;"/>
-                    <HBox spacing="14" alignment="CENTER_LEFT">
-                        <Button fx:id="btnAjukanCuti" text="Ajukan Cuti"
+                <VBox spacing="20" styleClass="card" style="-fx-padding: 30px;">
+                    <Label text="Leave Request" styleClass="card-title, card-title-green" />
+                    
+                    <VBox spacing="8">
+                        <Label text="Reason for leave" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: bold;" />
+                        <TextArea fx:id="fieldCuti" promptText="Enter your reason here..."
+                                  wrapText="true"
+                                  styleClass="text-area"
+                                  style="-fx-pref-height: 120px;" />
+                    </VBox>
+                    
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <Button fx:id="btnAjukanCuti" text="Submit Request"
                                 onAction="#handleAjukanCuti"
-                                style="-fx-background-color: #0288d1; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" />
-                        <Button text="Lihat Status Cuti"
+                                styleClass="btn, btn-success" />
+                        <Button text="Check Status"
                                 onAction="#handleLihatCuti"
-                                style="-fx-background-color: #0097a7; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" />
+                                styleClass="btn, btn-info" />
                     </HBox>
-                    <TextArea fx:id="areaCutiStatus"
-                              promptText="Status Pengajuan Cuti"
-                              editable="false"
-                              wrapText="true"
-                              style="-fx-pref-width: 340px; -fx-pref-height: 70px; -fx-background-color: #e3f2fd; -fx-font-size: 15px;" />
+                    
+                    <VBox spacing="8" style="-fx-padding: 10 0 0 0;">
+                        <Label text="Status update" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: bold;" />
+                        <TextArea fx:id="areaCutiStatus"
+                                  promptText="Leave request status will appear here"
+                                  editable="false"
+                                  wrapText="true"
+                                  styleClass="text-area"
+                                  style="-fx-pref-height: 80px; -fx-background-color: #f1f5f9;" />
+                    </VBox>
                 </VBox>
             </VBox>
 
             <!-- KANAN: Panel Gaji & Absensi -->
-            <VBox spacing="32" HBox.hgrow="ALWAYS" style="-fx-pref-width: 180%;">
-                <VBox spacing="20" style="-fx-background-color: white; -fx-padding: 34px 30px; -fx-background-radius: 14; -fx-effect: dropshadow(three-pass-box, rgba(76,175,80,0.16), 14, 0, 0, 8);">
-                    <Label text="Info Gaji dan Absensi"
-                           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #388e3c;" />
+            <VBox spacing="25" HBox.hgrow="ALWAYS" style="-fx-pref-width: 100%;">
+                <VBox spacing="20" styleClass="card" style="-fx-padding: 30px;">
+                    <Label text="Attendance &amp; Payroll" styleClass="card-title, card-title-green" />
 
                     <!-- Panel Absensi -->
-                    <HBox spacing="16" alignment="CENTER_LEFT">
-                        <Button fx:id="btnAbsensi" text="Isi Absensi"
+                    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #f8fafc; -fx-padding: 15px; -fx-background-radius: 8px; -fx-border-color: #e2e8f0; -fx-border-radius: 8px;">
+                        <Button fx:id="btnAbsensi" text="Clock In"
                                 onAction="#handleAbsensi"
-                                style="-fx-background-color: linear-gradient(to right, #1976d2, #42a5f5); -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 170px; -fx-font-size: 15px;" />
-                        <Label fx:id="labelStatus"
-                               style="-fx-text-fill: #2e7d32; -fx-font-size: 15px; -fx-font-weight: bold;" />
+                                styleClass="btn, btn-primary" style="-fx-pref-width: 120px;" />
+                        <Label fx:id="labelStatus" text="Not clocked in"
+                               style="-fx-text-fill: #475569; -fx-font-size: 14px; -fx-font-weight: bold;" />
                     </HBox>
 
                     <!-- Panel Gaji -->
-                    <Button fx:id="btnLihatGaji" text="Lihat Gaji"
-                            onAction="#handleLihatGaji"
-                            style="-fx-background-color: linear-gradient(to right, #388e3c, #66bb6a); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px;" />
-                    <Label fx:id="labelGaji"
-                           style="-fx-font-size: 17px; -fx-text-fill: #004d40; -fx-font-weight: bold;" />
+                    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #f0fdf4; -fx-padding: 15px; -fx-background-radius: 8px; -fx-border-color: #bbf7d0; -fx-border-radius: 8px;">
+                        <Button fx:id="btnLihatGaji" text="View Salary"
+                                onAction="#handleLihatGaji"
+                                styleClass="btn, btn-success" style="-fx-pref-width: 120px;" />
+                        <Label fx:id="labelGaji" text="Rp 0"
+                               style="-fx-font-size: 16px; -fx-text-fill: #166534; -fx-font-weight: bold;" />
+                    </HBox>
 
-                    <TableView fx:id="tableRiwayatAbsensi"
-                               style="-fx-pref-height: 210px; -fx-background-color: #f1f8e9; -fx-font-size: 14px;">
-                        <columns>
-                            <TableColumn fx:id="colTanggal" text="Tanggal" prefWidth="110"/>
-                            <TableColumn fx:id="colJam" text="Jam" prefWidth="90"/>
-                            <TableColumn fx:id="colKeterangan" text="Keterangan" prefWidth="140"/>
-                        </columns>
-                    </TableView>
+                    <VBox spacing="10" style="-fx-padding: 10 0 0 0;">
+                        <Label text="Recent Attendance" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #475569;" />
+                        <TableView fx:id="tableRiwayatAbsensi" styleClass="table-view" style="-fx-pref-height: 200px;">
+                            <columns>
+                                <TableColumn fx:id="colTanggal" text="Date" prefWidth="120"/>
+                                <TableColumn fx:id="colJam" text="Time" prefWidth="100"/>
+                                <TableColumn fx:id="colKeterangan" text="Status" prefWidth="130"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
                 </VBox>
             </VBox>
         </HBox>
@@ -79,13 +96,13 @@
 
     <!-- Footer -->
     <bottom>
-        <HBox alignment="CENTER_LEFT" style="-fx-padding: 0px; -fx-background-color: #222;">
-            <StackPane fx:id="marqueePane" style="-fx-pref-height: 42px; -fx-background-color: white; -fx-alignment: center-left;" HBox.hgrow="ALWAYS">
-                <Label fx:id="marqueeLabel" text="Selamat datang di Dashboard Karyawan! Jangan lupa absen dan cek status cuti Anda."
-                       style="-fx-font-size: 17px; -fx-text-fill: #1976d2;" />
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="footer-dark" style="-fx-padding: 10px 20px;">
+            <StackPane fx:id="marqueePane" style="-fx-background-color: #334155; -fx-background-radius: 6px; -fx-padding: 8px 15px;" HBox.hgrow="ALWAYS">
+                <Label fx:id="marqueeLabel" text="Welcome to Employee Dashboard! Please remember to clock in and out daily."
+                       style="-fx-font-size: 14px; -fx-text-fill: #f8fafc;" />
             </StackPane>
-            <Button text="Keluar" onAction="#handleLogout"
-                    style="-fx-background-color: linear-gradient(to right, #ff5252, #ff1744); -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 0 26px;"/>
+            <Button text="Logout" onAction="#handleLogout"
+                    styleClass="btn, btn-danger" />
         </HBox>
     </bottom>
 </BorderPane>

@@ -1,13 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controller.LoginController">
-    <Label text="Login HRMS" />
-    <TextField fx:id="usernameField" promptText="Username" />
-    <PasswordField fx:id="passwordField" promptText="Password" />
-    <HBox spacing="10">
-        <Button text="Login sebagai Admin" onAction="#handleLoginAsAdmin" />
-        <Button text="Login sebagai Karyawan" onAction="#handleLoginAsKaryawan" />
-    </HBox>
-</VBox>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.LoginController"
+           stylesheets="@/style/style.css"
+           styleClass="bg-gradient-login">
+
+    <!-- Centered Container -->
+    <VBox alignment="CENTER">
+        <HBox fx:id="cardGroup"
+              alignment="CENTER"
+              maxWidth="700" prefHeight="450" maxHeight="450"
+              style="-fx-background-color: white; -fx-background-radius: 16px; -fx-padding: 0;">
+            <effect>
+                <DropShadow radius="20" offsetX="0" offsetY="10" color="#0000001a"/>
+            </effect>
+            
+            <!-- Login Card -->
+            <VBox alignment="CENTER" spacing="25"
+                  prefWidth="350" prefHeight="450"
+                  style="-fx-background-color: white; -fx-background-radius: 16px 0 0 16px; -fx-padding: 40px;">
+                
+                <Label text="Welcome Back"
+                       style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                <Label text="Please login to your account"
+                       style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-padding: -15 0 10 0;" />
+                       
+                <VBox spacing="15" alignment="CENTER_LEFT">
+                    <Label text="Username" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: bold;" />
+                    <TextField fx:id="usernameField" promptText="Enter your username"
+                               styleClass="text-field" style="-fx-pref-width: 270; -fx-pref-height: 40;" />
+                               
+                    <Label text="Password" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: bold;" />
+                    <PasswordField fx:id="passwordField" promptText="Enter your password"
+                                   styleClass="password-field" style="-fx-pref-width: 270; -fx-pref-height: 40;" />
+                </VBox>
+                
+                <HBox spacing="15" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+                    <Button text="Login Admin" onAction="#handleLoginAsAdmin"
+                            styleClass="btn, btn-primary" style="-fx-pref-width: 130; -fx-pref-height: 40;" />
+                    <Button text="Login Karyawan" onAction="#handleLoginAsKaryawan"
+                            styleClass="btn, btn-info" style="-fx-pref-width: 130; -fx-pref-height: 40;" />
+                </HBox>
+            </VBox>
+
+            <!-- Info Card -->
+            <VBox spacing="15" alignment="CENTER"
+                  prefWidth="350" prefHeight="450"
+                  style="-fx-background-color: linear-gradient(to bottom right, #3b82f6, #0ea5e9); -fx-background-radius: 0 16px 16px 0; -fx-padding: 40px;">
+                <Label text="HR Management"
+                       wrapText="true"
+                       style="-fx-font-size: 26px; -fx-text-fill: white; -fx-font-weight: bold;" />
+                <Label text="Streamline your workflow. Manage attendance, leave, and payroll efficiently."
+                       wrapText="true" textAlignment="CENTER"
+                       style="-fx-font-size: 15px; -fx-text-fill: #e0f2fe; -fx-padding: 10px;" />
+                
+                <StackPane style="-fx-padding: 20 0 0 0;">
+                    <ImageView fitWidth="220" preserveRatio="true">
+                        <Image url="@/assets/info.png"/>
+                    </ImageView>
+                </StackPane>
+            </VBox>
+        </HBox>
+    </VBox>
+</StackPane>
